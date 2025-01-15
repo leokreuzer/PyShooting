@@ -1,0 +1,59 @@
+import numpy as np 
+
+##### trivial predictor, increase/decrease if iterations is larger/smaller than N_star #####
+def trivial(number_iterations, steplength, steplength_parameters):
+    alpha1 = 2
+    alpha2 = 1
+
+    if number_iterations > steplength_parameters.N_desired:
+        steplength = (1/(alpha1*alpha2))*steplength
+    elif number_iterations < steplength_parameters.N_desired:
+        steplength = alpha1*steplength
+
+    if abs(steplength) > steplength_parameters.max_stepsize:
+        steplength = np.sign(steplength)*steplength_parameters.max_stepsize
+    elif abs(steplength) < steplength_parameters.min_stepsize:
+        steplength = np.sign(steplength)*steplength_parameters.min_stepsize
+
+    return steplength
+
+
+##### averaging to N_star (see Kerschen part2) #####
+def N_star_avg(number_iterations, steplength, steplength_parameters):
+
+    if number_iterations != steplength_parameters.N_desired and number_iterations != 0:
+        steplength = steplength*(steplength_parameters.N_desired/number_iterations)
+    elif number_iterations == 0:
+        steplength = 2*steplength
+
+    if abs(steplength) > steplength_parameters.max_stepsize:
+        steplength = steplength_parameters.max_stepsize
+    elif abs(steplength) < steplength_parameters.min_stepsize:
+        steplength = steplength_parameters.min_stepsize
+
+    return steplength
+
+
+##### exponantial adaptation, increase/decrease by the a constant ti the power of  the differenc bewteen iterations and N_star #####
+def exponential(number_iterations, steplength, steplength_parameters):
+    alpha = 2
+
+    diff = steplength_parameters.N_desired - number_iterations
+
+    steplength = (alpha**diff)*steplength
+
+    if abs(steplength) > steplength_parameters.max_stepsize:
+        steplength = steplength_parameters.max_stepsize
+    elif abs(steplength) < steplength_parameters.min_stepsize:
+        steplength = steplength_parameters.min_stepsize
+
+    return steplength
+
+
+
+##### no adaptation, step length will always stay s_0 #####
+def constant(number_iterations, steplength, steplength_parameters):
+
+    steplength = np.sign(steplength)*steplength_parameters.initial_stepsize
+
+    return steplength
