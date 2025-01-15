@@ -1,5 +1,5 @@
 """   
-    The Shooting-Toolbox is a program that uses the Shooting Method for Periodic Steady-state
+    PyShooting is a program that uses the Shooting Method for Periodic Steady-state
     Nonlinear Structural Dynamics. It also performs numerical continuation to build the frequency response, as well as nonlinear normal modes.
 
     Copyright (C) 2025  Leo Kreuzer
