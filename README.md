@@ -5,8 +5,10 @@ A Python Implementation of a Shooting-Algorithm with Numerical Continuation and 
 The code is available to interested researchers.
 The code is not for commercial use.
 
-    PyShooting is a program that uses the Shooting Method for Periodic Steady-state Nonlinear Structural Dynamics. 
-    It also performs numerical continuation to build the frequency response, as well as nonlinear normal modes.
+    PyShooting is a program that uses the Shooting Method for Periodic Steady-state
+    Nonlinear Structural Dynamics. 
+    It also performs numerical continuation to build the frequency response,
+    as well as nonlinear normal modes.
 
     Copyright (C) 2025  Leo Kreuzer
 
